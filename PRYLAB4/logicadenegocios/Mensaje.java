@@ -1,19 +1,21 @@
+package logicadenegocios;
+
 
 /**
- * Write a description of class Chip here.
+ * Write a description of class Mensaje here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Chip
+public class Mensaje
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Chip
+     * Constructor for objects of class Mensaje
      */
-    public Chip()
+    public Mensaje()
     {
         // initialise instance variables
         x = 0;
