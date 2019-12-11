@@ -1,5 +1,9 @@
 package logicadenegocios;
 
+import logicadenegocios.Llamada;
+import logicadenegocios.Mensaje;
+import logicadenegocios.Navegacion;
+
 
 /**
  * Write a description of class Chip here.
@@ -94,6 +98,21 @@ public class Chip{
         return "El chip ya se encuentra activado!";  
         
       }   
+        
+  }
+  
+  
+  public boolean verificarSaldo(){
+    
+    if(saldo>0){
+    
+      return true;
+    
+    }  else{
+    
+          return false;
+      
+       }
         
   }
   

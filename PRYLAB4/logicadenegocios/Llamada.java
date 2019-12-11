@@ -1,35 +1,69 @@
 package logicadenegocios;
 
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Random;
+import logicadenegocios.Chip;
+
 
 /**
  * Write a description of class Llamada here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Óscar Trejos y Maria Paula Rodriguez
+ * @version 11/12/19
  */
-public class Llamada
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public class Llamada{
+    
+  private double duracion=0; 
+  private int costoMinuto=30; //ver si es int o String
+  private int numDestino=0;
+  private Date fechaHora;
+ 
+  
 
-    /**
-     * Constructor for objects of class Llamada
-     */
-    public Llamada()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+  /**
+  * Constructor de objetos para la clase Llamada
+  */
+  public Llamada(int pNumDestino,double pDuracion){ //ver si se asigna el numero o lo agrega con contador
+      
+    numDestino=pNumDestino;
+    duracion=pDuracion;
+        
+  }
+  
+  
+  public void setFechaHora(){
+      
+    Calendar calendario=Calendar.getInstance();
+    fechaHora=calendario.getTime();
+          
+  }
+  
+  
+  public String getFechaCompra(){
+      
+    SimpleDateFormat nuevaFecha= new SimpleDateFormat("dd/MM/yy");
+    return nuevaFecha.format(fechaHora);
+      
+  }
+  
+  
+  public double getDuracion(){
+      
+    return duracion;
+          
+  }
+  
+  
+  public double llamar(double duracion, Chip pChip){
+      
+    return duracion;
+          
+  }
+  
+  
+  
+  
+  
 }
