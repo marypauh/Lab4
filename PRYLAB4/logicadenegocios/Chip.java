@@ -198,6 +198,12 @@ public class Chip{
   }
   
   
+  public int consultarCantidadLineas(){
+    
+    return cantidadLineasPrepago;
+    
+  }
+  
   public String consultarMesActual(){
     
     return "";  
