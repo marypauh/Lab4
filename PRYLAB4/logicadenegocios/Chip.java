@@ -6,16 +6,14 @@ import logicadenegocios.Navegacion;
 
 
 /**
- * Write a description of class Chip here.
- *
- * @author Óscar Trejos y Maria Paula Rodriguez
+ * @author Óscar Trejos y María Paula Rodríguez
  * @version 11/12/19
  */
 public class Chip{
     
-  private double saldo=0; //lo puse cero para asignarle el bono cuando se active
-  private int codigoPais=506; //ver si es int o String
-  private int numTelefono=0;
+  protected double saldo=0; 
+  protected String codigoPais=null; 
+  protected String numTelefono=null;
   private boolean estado=false;
   private String dueño=null;
   private double cantidadMegabytes=0;
@@ -26,15 +24,15 @@ public class Chip{
   /**
   * Constructor de objetos para la clase Chip
   */
-  public Chip(int pNumTelefono){ //ver si se asigna el numero o lo agrega con contador
+  public Chip(String pNumTelefono){ 
       
-    numTelefono=pNumTelefono;
+    this.numTelefono=pNumTelefono;
     cantidadLineasPrepago++;
         
   }
   
   
-  public int getCodigoPais(){
+  public String getCodigoPais(){
     
     return codigoPais;  
         
@@ -55,13 +53,6 @@ public class Chip{
   }
   
   
-  public void setCantidadMegabytes(){//utilizar random
-    
-    cantidadMegabytes=0;    
-        
-  }
-  
-  
   public double getCantidadMegabytes(){
     
     return cantidadMegabytes;    
@@ -69,14 +60,7 @@ public class Chip{
   }
   
   
-  public int getNumTelefono(){
-    
-    return numTelefono;    
-        
-  }
-  
-  
-  public int getCantidadLlamadas(){//No se si es igual al de consultar llamadas
+  public String getNumTelefono(){
     
     return numTelefono;    
         
@@ -87,10 +71,10 @@ public class Chip{
     
     if(estado==false){
         
-      dueño=pDueño;
-      cantidadMegabytes=pCantidadMegabytes;
-      saldo=1000;
-      estado=true;
+      this.dueño=pDueño;
+      this.cantidadMegabytes=pCantidadMegabytes;
+      this.saldo=1000;
+      this.estado=true;
       return "Se ha activado con éxito el chip";    
     
     } else{
@@ -117,14 +101,14 @@ public class Chip{
   }
   
   
-  public double consultarSaldoDisponible(){
+  public double consultarSaldo(){
     
     return saldo;  
         
   }
   
   
-  public String consultarActividad(){
+  public String consultarActividad(){ //listado mensajes y llamadas de un numero
     
     return "";  
         
@@ -135,7 +119,7 @@ public class Chip{
     
     if(pMonto>0){        
         
-      saldo+=pMonto;
+      this.saldo+=pMonto;
       return "Se realizó exitosamente, el saldo actual es: "+saldo;
     
     } else{
@@ -153,7 +137,7 @@ public class Chip{
         
       if(saldo==0){
           
-        saldo+=100;
+        this.saldo+=100;
         return "Te han salvado de forma correcta!";        
         
       } else{

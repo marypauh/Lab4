@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Mensaje
+comment0.text=\r\n\ @author\ \u00D3scar\ Trejos\ y\ Maria\ Paula\ Rodriguez\r\n\ @version\ 11/12/19\r\n
+comment1.params=pTexto\ pChip
+comment1.target=Mensaje(java.lang.String,\ Chip)
+comment1.text=\r\n\ Constructor\ de\ objetos\ para\ la\ clase\ Mensaje\r\n
+comment2.params=
+comment2.target=java.lang.String\ getNumDestino()
+comment3.params=
+comment3.target=void\ setFechaHora()
+comment4.params=
+comment4.target=java.lang.String\ getFechaHora()
+comment5.params=
+comment5.target=java.lang.String\ getTexto()
+comment6.params=pTexto\ pChip
+comment6.target=java.lang.String\ enviarMensaje(java.lang.String,\ Chip)
+numComments=7

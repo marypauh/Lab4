@@ -8,30 +8,33 @@ import logicadenegocios.Chip;
 
 
 /**
- * Write a description of class Llamada here.
- *
  * @author Óscar Trejos y Maria Paula Rodriguez
  * @version 11/12/19
  */
 public class Llamada{
     
-  private double duracion=0; 
-  private int costoMinuto=30; //ver si es int o String
-  private int numDestino=0;
-  private Date fechaHora;
+  protected double duracion=0; 
+  private int costoMinuto=30; 
+  protected String numDestino=null;
+  protected Date fechaHora;
  
   
-
   /**
   * Constructor de objetos para la clase Llamada
   */
-  public Llamada(int pNumDestino,double pDuracion){ //ver si se asigna el numero o lo agrega con contador
+  public Llamada(String pNumDestino,double pDuracion){ 
       
-    numDestino=pNumDestino;
-    duracion=pDuracion;
+    this.numDestino=pNumDestino;
+    this.duracion=pDuracion;
         
   }
   
+  
+  public String getNumDestino(){
+    
+    return numDestino;  
+      
+  }
   
   public void setFechaHora(){
       
@@ -41,7 +44,7 @@ public class Llamada{
   }
   
   
-  public String getFechaCompra(){
+  public String getFechaHora(){
       
     SimpleDateFormat nuevaFecha= new SimpleDateFormat("dd/MM/yy");
     return nuevaFecha.format(fechaHora);
@@ -58,12 +61,18 @@ public class Llamada{
   
   public double llamar(double duracion, Chip pChip){
       
-    return duracion;
-          
+    this.numDestino = pChip.numTelefono;
+    if (numDestino != "911"){
+     
+      pChip.saldo -= (costoMinuto * duracion);
+      setFechaHora();
+      return pChip.saldo;
+     
+    } else {
+    
+      return pChip.saldo;    
+        
+    }
+    
   }
-  
-  
-  
-  
-  
 }
