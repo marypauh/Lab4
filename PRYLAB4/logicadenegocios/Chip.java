@@ -122,9 +122,59 @@ public class Chip{
   }
   
   
-  public String consultarActividad(){ //listado mensajes y llamadas de un numero
+  public String consultarActividad(Chip pChip){ //listado mensajes y llamadas de un numero
     
-    return "";  
+    int contador=0;
+    String resultado="";
+    resultado+="Las llamadas son: "+consultarLlamadasActividad(pChip)+"\n";
+    resultado+="Los mensajes son: "+consultarMensajesActividad(pChip)+"\n";
+    return resultado;
+        
+  }
+  
+  
+  public String consultarLlamadasActividad(Chip pChip){ 
+    
+    int contador=0;
+    String resultado="";
+    while(contador<llamadas.length){
+        
+      if(llamadas[contador].numDestino.equals(pChip.numTelefono)){
+          
+        resultado+="Duracion: "+llamadas[contador].duracion+"\n";
+        resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";
+        
+      }
+      
+      contador+=1;    
+    
+    }
+    
+    return resultado;
+        
+  }
+  
+  
+  public String consultarMensajesActividad(Chip pChip){ 
+    
+    int contador=0;
+    String resultado="";
+    while(contador<mensajes.length){
+        
+      if(mensajes[contador].numDestino.equals(pChip.numTelefono)){
+          
+        resultado+="Contenido: "+mensajes[contador].texto+"\n";
+        resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
+        
+      }
+      
+      contador+=1;    
+    
+    }
+    
+    return resultado;
         
   }
   
@@ -170,23 +220,73 @@ public class Chip{
   }
   
   
-  public String consultarLlamadasEnviadas(){
-    
-    return "";  
-        
-  }
-  
-  
   public String consultarMensajesEnviados(){
     
-    return "";  
+    int contador=0;
+    String resultado="";
+    while(contador<mensajes.length){
+        
+      resultado+="Contenido: "+mensajes[contador].texto+"\n";
+      resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
+      resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
+      contador+=1;    
+    
+    }
+    
+    return resultado; 
         
   }
   
   
-  public String transferir(Chip pChip, int monto){
+  public String consultarLlamadasEnviadas(){
     
-    return "";  
+    int contador=0;
+    String resultado="";
+    while(contador<llamadas.length){
+        
+      resultado+="Duracion: "+llamadas[contador].duracion+"\n";
+      resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
+      resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";  
+      contador+=1;    
+    
+    }
+    
+    return resultado;  
+        
+  }
+  
+  
+  public String transferir(Chip pChip, int pMonto){
+      
+      
+    if(pMonto>0){        
+      
+      if(verificarSaldo()==true){
+        
+        if(consultarSaldo()>=pMonto){
+        
+          pChip.saldo+=pMonto;
+          saldo-=(pMonto+5);
+          return "Se realizó la transferencia de manera exitosa por un monto de: "+pMonto;
+        
+        } else{
+        
+            return "No posee el monto que desea transferir";
+         
+          }
+    
+      } else{
+    
+        return "No posee saldo disponible para realizar la transacción!";
+    
+        }         
+
+    } else{
+    
+         return "Monto de transferencia inválido!";
+    
+      }  
+    
         
   }
   

@@ -1,7 +1,6 @@
 package logicadenegocios;
 
-import logicadenegocios.Llamada;
-import logicadenegocios.Mensaje;
+import logicadenegocios.Chip;
 import java.util.Random;
 
 
@@ -16,26 +15,13 @@ public class Navegacion {
 
   
   /**
-   * Constructor de objetos para la clase Mensaje
+   * Constructor de objetos para la clase Navegacion
    */
   public Navegacion(String pPaginaWeb, double pCantidadKilobytes) {
       
     this.paginaWeb = pPaginaWeb;
     this.cantidadKilobytes = pCantidadKilobytes;
     
-  }
-
-  
-  public String navegar(String pPaginaWeb,Chip pChip){
-    
-    double pCantidadMegabytes;  
-    paginaWeb=pPaginaWeb;
-    setCantidadKilobytes(1, 8);
-    pCantidadMegabytes=pChip.getCantidadMegabytes();
-    pCantidadMegabytes-=((cantidadKilobytes*1)/1000);
-    pChip.setCantidadMegabytes(pCantidadMegabytes);
-    return "La cantidad de megabytes disponibles es de: "+pChip.getCantidadMegabytes();    
-      
   }
   
   
@@ -62,7 +48,23 @@ public class Navegacion {
   }
   
   
-  
+  /**
+   * Método que permite visitar una página web específica
+   * 
+   * @param pPaginaWeb y pChip
+   * @return devuelve un mensaje con la cantidad de megabytes disponibles          
+   */ 
+  public String navegar(String pPaginaWeb,Chip pChip){
+    
+    double pCantidadMegabytes;  
+    paginaWeb=pPaginaWeb;
+    setCantidadKilobytes(1, 8);
+    pCantidadMegabytes=pChip.getCantidadMegabytes();
+    pCantidadMegabytes-=((cantidadKilobytes*1)/1000);
+    pChip.setCantidadMegabytes(pCantidadMegabytes);
+    return "La cantidad de megabytes disponibles es de: "+pChip.getCantidadMegabytes();    
+      
+  } 
   
   
 }
