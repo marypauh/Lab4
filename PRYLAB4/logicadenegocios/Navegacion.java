@@ -1,35 +1,68 @@
 package logicadenegocios;
 
+import logicadenegocios.Llamada;
+import logicadenegocios.Mensaje;
+import java.util.Random;
+
 
 /**
- * Write a description of class Navegacion here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Óscar Trejos y Maria Paula Rodriguez
+ * @version 11/12/19
  */
-public class Navegacion
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public class Navegacion {
+    
+  private String paginaWeb = null;
+  private double cantidadKilobytes=0;
 
-    /**
-     * Constructor for objects of class Navegacion
-     */
-    public Navegacion()
-    {
-        // initialise instance variables
-        x = 0;
-    }
+  
+  /**
+   * Constructor de objetos para la clase Mensaje
+   */
+  public Navegacion(String pPaginaWeb, double pCantidadKilobytes) {
+      
+    this.paginaWeb = pPaginaWeb;
+    this.cantidadKilobytes = pCantidadKilobytes;
+    
+  }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
-    }
+  
+  public String navegar(String pPaginaWeb,Chip pChip){
+    
+    double pCantidadMegabytes;  
+    paginaWeb=pPaginaWeb;
+    setCantidadKilobytes(1, 8);
+    pCantidadMegabytes=pChip.getCantidadMegabytes();
+    pCantidadMegabytes-=((cantidadKilobytes*1)/1000);
+    pChip.setCantidadMegabytes(pCantidadMegabytes);
+    return "La cantidad de megabytes disponibles es de: "+pChip.getCantidadMegabytes();    
+      
+  }
+  
+  
+  public String getPaginaWeb(){
+    
+    return paginaWeb;  
+      
+  }
+  
+  
+  public double getCantidadKilobytes(){
+    
+    return cantidadKilobytes;  
+      
+  }
+  
+  
+  public  int setCantidadKilobytes(int min,int max){
+      
+    Random random=new Random();
+    int cantidadKilobytes=random.nextInt(max-min)+min;
+    return cantidadKilobytes;
+    
+  }
+  
+  
+  
+  
+  
 }

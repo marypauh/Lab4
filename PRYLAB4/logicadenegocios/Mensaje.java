@@ -62,6 +62,7 @@ public class Mensaje {
   public String enviarMensaje(String pTexto, Chip pChip){
       
     this.numDestino = pChip.numTelefono;
+    
     //if (texto.charAt(129) == " ") { validar el char vacio
       pChip.saldo -= costoMensaje;
       setFechaHora();

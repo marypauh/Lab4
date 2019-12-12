@@ -20,7 +20,8 @@ public class Chip{
   private static int contadorSalvame=0;
   private static int cantidadLineasPrepago=0;
   
-
+  
+  
   /**
   * Constructor de objetos para la clase Chip
   */
@@ -56,6 +57,13 @@ public class Chip{
   public double getCantidadMegabytes(){
     
     return cantidadMegabytes;    
+        
+  }
+  
+  
+  public void setCantidadMegabytes(double pCantidadMegabytes){
+    
+    cantidadMegabytes=pCantidadMegabytes;    
         
   }
   
