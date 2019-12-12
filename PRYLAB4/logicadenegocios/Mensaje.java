@@ -62,17 +62,18 @@ public class Mensaje {
   public String enviarMensaje(String pTexto, Chip pChip){
       
     this.numDestino = pChip.numTelefono;
-    
-    //if (texto.charAt(129) == " ") { validar el char vacio
+    char digito = pTexto.charAt(128);
+    if (Character.toString(digito) == null) { 
+        
       pChip.saldo -= costoMensaje;
       setFechaHora();
       return "El mensaje ha sido enviado! Su saldo: " + pChip.saldo;
-     
-    //} else {
+      
+    } else {
     
-      //return "El texto no puede exceder los 128 caracteres";
-    //}
+      return "El texto no puede exceder los 128 caracteres";
+    }
     
-  }
+   }
   
 } 
