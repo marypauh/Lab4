@@ -19,7 +19,10 @@ public class Chip{
   private double cantidadMegabytes=0;
   private static int contadorSalvame=0;
   private static int cantidadLineasPrepago=0;
-  
+  protected Llamada llamadas[] = new Llamada[10];
+  protected Mensaje mensajes[] = new Mensaje[10];
+  private static int cantidadMensajes = 1;
+  private static int cantidadLlamadas = 1;
   
   
   /**
@@ -75,8 +78,11 @@ public class Chip{
   }
   
   
+  /**
+   * 
+   */
   public String activarChip(String pDueño,double pCantidadMegabytes){
-    
+      
     if(estado==false){
         
       this.dueño=pDueño;
@@ -206,5 +212,35 @@ public class Chip{
   }  
   
 
-
+  public void agregarMensaje(Mensaje pMensaje) {
+  
+    if (cantidadMensajes <=10) {
+      
+      mensajes[cantidadMensajes] = pMensaje;
+      cantidadMensajes++;
+      //toString mensajes
+    } else {
+    
+      cantidadMensajes = 1;
+      
+    }
+    
+  }
+  
+  
+  public void agregarLlamada(Llamada pLlamada) {
+  
+    if (cantidadLlamadas <=10) {
+      
+      llamadas[cantidadLlamadas] = pLlamada;
+      cantidadLlamadas++;
+      //toString llamadas
+    } else {
+    
+      cantidadLlamadas = 1;
+      
+    }
+    
+  }
+ 
 }
