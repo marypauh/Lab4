@@ -79,7 +79,10 @@ public class Chip{
   
   
   /**
+   * Método que permite activar el chip.
    * 
+   * @param pDueño y pCantidadMegabytes
+   * @return Un mensaje indicando el resultado de la acción.
    */
   public String activarChip(String pDueño,double pCantidadMegabytes){
       
@@ -100,6 +103,11 @@ public class Chip{
   }
   
   
+  /**
+   * Método que permite verficar si existe saldo disponible.
+   * 
+   * @return valor booleano indicando la respuesta.
+   */
   public boolean verificarSaldo(){
     
     if(saldo>0){
@@ -112,9 +120,14 @@ public class Chip{
       
        }
         
-  }
+  }  
   
   
+  /**
+   * Método que muestra el saldo disponible.
+   * 
+   * @return monto del saldo. 
+   */
   public double consultarSaldo(){
     
     return saldo;  
@@ -122,6 +135,13 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite revisar la actividad de llamadas y mensajes
+   * que se han tenido con otro chip específico.
+   * 
+   * @param pChip
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
   public String consultarActividad(Chip pChip){ //listado mensajes y llamadas de un numero
     
     int contador=0;
@@ -133,6 +153,13 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite revisar la actividad de llamadas 
+   * que se han tenido con otro chip específico.
+   * 
+   * @param pChip
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
   public String consultarLlamadasActividad(Chip pChip){ 
     
     int contador=0;
@@ -156,6 +183,13 @@ public class Chip{
   }
   
   
+  /**
+   * Método que permite revisar la actividad de mensajes 
+   * que se han tenido con otro chip específico.
+   * 
+   * @param pChip
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
   public String consultarMensajesActividad(Chip pChip){ 
     
     int contador=0;
@@ -179,6 +213,12 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite recargar un chip.
+   * 
+   * @param pMonto
+   * @return Un mensaje indicando el saldo actual del chip.
+   */
   public String recargar(int pMonto){
     
     if(pMonto>0){        
@@ -195,6 +235,12 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite recargar un 100 colones si el saldo es cero.
+   * 
+   * @param pMonto
+   * @return Un mensaje de éxito o fallo.
+   */
   public String salvar(int pMonto){
     
     if(contadorSalvame<=3){        
@@ -220,6 +266,11 @@ public class Chip{
   }
   
   
+  /**
+   * Método que permite revisar la actividad de mensajes enviados.
+   * 
+   * @return Un reporte con todos los mensajes enviados.
+   */
   public String consultarMensajesEnviados(){
     
     int contador=0;
@@ -238,6 +289,11 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite revisar la actividad de llamadas enviadas. 
+   * 
+   * @return Un reporte con todos las llamadas enviadas.
+   */
   public String consultarLlamadasEnviadas(){
     
     int contador=0;
@@ -256,6 +312,12 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite transferir un monto a otro chip.
+   * 
+   * @param pMonto
+   * @return Un mensaje de éxito o fallo.
+   */
   public String transferir(Chip pChip, int pMonto){
       
       
@@ -291,6 +353,11 @@ public class Chip{
   }
   
   
+  /**
+   * Método que permite revisar la actividad de mensajes recibidos.
+   * 
+   * @return Un reporte con todos los mensajes recibidos.
+   */
   public String consultarMensajesRecibidos(){
     
     return "";  
@@ -298,12 +365,24 @@ public class Chip{
   }
   
   
+  /**
+   * Método que permite revisar la cantidad de lineas que existen.
+   * 
+   * @return Un reporte con la cantidad de lineas que existen.
+   */
   public int consultarCantidadLineas(){
     
     return cantidadLineasPrepago;
     
   }
   
+  
+   /**
+   * Método que permite revisar la actividad de llamadas y mensajes
+   * que se han tenido en el mes actual.
+   *
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
   public String consultarMesActual(){
     
     return "";  
@@ -311,13 +390,26 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite revisar la actividad de llamadas y mensajes
+   * que se han tenido en un mes específico.
+   * 
+   * @param pMes
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
   public String consultarMes(String pMes){
     
     return "";  
         
   }  
   
-
+  
+   /**
+   * Método que permite agregar mensajes al chip.
+   * 
+   * @param pMensaje
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
   public void agregarMensaje(Mensaje pMensaje) {
   
     if (cantidadMensajes <=10) {
@@ -334,6 +426,12 @@ public class Chip{
   }
   
   
+   /**
+   * Método que permite agregar llamadas al chip.
+   * 
+   * @param pLlamada
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
   public void agregarLlamada(Llamada pLlamada) {
   
     if (cantidadLlamadas <=10) {

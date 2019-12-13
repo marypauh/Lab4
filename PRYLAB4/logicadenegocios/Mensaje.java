@@ -20,6 +20,8 @@ public class Mensaje {
   
   /**
    * Constructor de objetos para la clase Mensaje
+   * 
+   * @param pTexto y pChip. 
    */
   public Mensaje(String pTexto, Chip pChip) {
       
@@ -60,6 +62,12 @@ public class Mensaje {
   }
   
   
+  /**
+   * Método que permite realizar un mensaje .
+   * 
+   * @param pChip y pTexto.
+   * @return Un mensaje de éxito o fallo de la transacción.
+   */
   public String enviarMensaje(String pTexto, Chip pChip){
       
     this.numDestino = pChip.numTelefono;
@@ -76,5 +84,6 @@ public class Mensaje {
     }
     
    }
+   
   
 } 

@@ -16,6 +16,8 @@ public class Navegacion {
   
   /**
    * Constructor de objetos para la clase Navegacion
+   * 
+   * @param pPaginaWeb y pCantidadKilobytes.
    */
   public Navegacion(String pPaginaWeb, double pCantidadKilobytes) {
       
@@ -49,10 +51,10 @@ public class Navegacion {
   
   
   /**
-   * Método que permite visitar una página web específica
+   * Método que permite visitar una página web específica.
    * 
-   * @param pPaginaWeb y pChip
-   * @return devuelve un mensaje con la cantidad de megabytes disponibles          
+   * @param pPaginaWeb y pChip.
+   * @return devuelve un mensaje con la cantidad de megabytes disponibles.          
    */ 
   public String navegar(String pPaginaWeb,Chip pChip){
     

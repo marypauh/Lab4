@@ -21,6 +21,8 @@ public class Llamada{
   
   /**
   * Constructor de objetos para la clase Llamada
+  * 
+  * @param PnumDestino y pDestino
   */
   public Llamada(String pNumDestino,double pDuracion){ 
       
@@ -60,12 +62,18 @@ public class Llamada{
   }
   
   
-  public double llamar(double duracion, Chip pChip){
+   /**
+   * Método que permite realizar una llamada.
+   * 
+   * @param pChip y pDuracion.
+   * @return Un mensaje con el saldo actual del chip.
+   */
+  public double llamar(double pDuracion, Chip pChip){
       
     this.numDestino = pChip.numTelefono;
     if (numDestino != "911"){
      
-      pChip.saldo -= (costoMinuto * duracion);
+      pChip.saldo -= (costoMinuto * pDuracion);
       setFechaHora();
       return pChip.saldo;
      
