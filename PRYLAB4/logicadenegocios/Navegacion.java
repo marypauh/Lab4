@@ -8,8 +8,8 @@ import java.util.Random;
  */
 public class Navegacion {
     
-  private String paginaWeb = null;
-  private double cantidadKilobytes=0;
+  protected String paginaWeb = null;
+  protected double cantidadKilobytes=0;
 
   /**
    * Constructor de objetos para la clase Navegacion
@@ -38,31 +38,13 @@ public class Navegacion {
   }
   
   
-  public  int setCantidadKilobytes(int min,int max){
+  public int setCantidadKilobytes(int min,int max){
       
     Random random=new Random();
     int cantidadKilobytes=random.nextInt(max-min)+min;
     return cantidadKilobytes;
     
   }
-  
-  
-  /**
-   * Método que permite visitar una página web específica.
-   * 
-   * @param pPaginaWeb y pChip.
-   * @return devuelve un mensaje con la cantidad de megabytes disponibles.          
-   */ 
-  public String navegar(String pPaginaWeb,Chip pChip){
-    
-    double pCantidadMegabytes;  
-    paginaWeb=pPaginaWeb;
-    setCantidadKilobytes(1, 8);
-    pCantidadMegabytes=pChip.getCantidadMegabytes();
-    pCantidadMegabytes-=((cantidadKilobytes*1)/1000);
-    pChip.setCantidadMegabytes(pCantidadMegabytes);
-    return "La cantidad de megabytes disponibles es de: "+pChip.getCantidadMegabytes();    
-      
-  } 
+   
   
 }

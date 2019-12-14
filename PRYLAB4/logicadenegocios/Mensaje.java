@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Mensaje {
     
-  private int costoMensaje = 20;
+  protected int costoMensaje = 20;
   protected String texto = null;
   protected String numDestino = null;
   protected Date fechaHora;
@@ -23,11 +23,10 @@ public class Mensaje {
    * 
    * @param pTexto y pChip. 
    */
-  public Mensaje(String pTexto, Chip pChip) {
+  public Mensaje(String pTexto, String pNumDestino) {
       
     this.texto = pTexto;
-    this.numDestino = pChip.numTelefono;
-    setFechaHora();
+    this.numDestino = pNumDestino;
     
   }
 
@@ -36,14 +35,6 @@ public class Mensaje {
     
     return numDestino;  
       
-  }
-  
-  
-  public void setFechaHora(){
-      
-    Calendar calendario=Calendar.getInstance();
-    fechaHora=calendario.getTime();
-          
   }
   
   
@@ -61,29 +52,4 @@ public class Mensaje {
           
   }
   
-  
-  /**
-   * Método que permite realizar un mensaje .
-   * 
-   * @param pChip y pTexto.
-   * @return Un mensaje de éxito o fallo de la transacción.
-   */
-  public String enviarMensaje(String pTexto, Chip pChip){
-      
-    this.numDestino = pChip.numTelefono;
-    char digito = pTexto.charAt(128);
-    if (Character.toString(digito) == null) { 
-        
-      pChip.saldo -= costoMensaje;
-      setFechaHora();
-      return "El mensaje ha sido enviado! Su saldo: " + pChip.saldo;
-      
-    } else {
-    
-      return "El texto no puede exceder los 128 caracteres";
-    }
-    
-   }
-   
-  
-} 
+}

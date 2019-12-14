@@ -23,9 +23,9 @@ public class Chip{
   protected Llamada llamadas[] = new Llamada[10];
   protected Mensaje mensajes[] = new Mensaje[10];
   protected Mensaje mensajesR[] = new Mensaje[10];
-  private static int cantidadMensajes = 1;
-  private static int cantidadMensajesR = 1;
-  private static int cantidadLlamadas = 1;
+  private int cantidadMensajes = 0;
+  private int cantidadMensajesR = 0;
+  private int cantidadLlamadas = 0;
   
   
   /**
@@ -90,6 +90,15 @@ public class Chip{
   }
   
   
+  public Date setFechaHora(){
+      
+    Calendar calendario=Calendar.getInstance();
+    Date fechaHora=calendario.getTime();
+    return fechaHora;
+    
+  }
+  
+  
   /**
    * Método que permite activar el chip.
    * 
@@ -110,7 +119,7 @@ public class Chip{
         
       return "El chip ya se encuentra activado!";  
         
-      }   
+    }   
         
   }
   
@@ -147,7 +156,7 @@ public class Chip{
   }
   
   
-   /**
+  /**
    * Método que permite revisar la actividad de llamadas y mensajes
    * que se han tenido con otro chip específico.
    * 
@@ -156,7 +165,6 @@ public class Chip{
    */
   public String consultarActividad(Chip pChip){ 
     
-    int contador=0;
     String resultado="";
     resultado+="Las llamadas son: "+consultarLlamadasActividad(pChip)+"\n";
     resultado+="Los mensajes son: "+consultarMensajesActividad(pChip)+"\n";
@@ -165,7 +173,7 @@ public class Chip{
   }
   
   
-   /**
+  /**
    * Método que permite revisar la actividad de llamadas 
    * que se han tenido con otro chip específico.
    * 
@@ -174,25 +182,33 @@ public class Chip{
    */
   public String consultarLlamadasActividad(Chip pChip){ 
     
-    int contador=0;
-    String resultado="";
-    while(contador<llamadas.length){
-        
-      if(llamadas[contador].numDestino.equals(pChip.numTelefono)){
+   int contador=0;
+   String resultado="";
+   if (cantidadLlamadas == 0) {
+   
+     return "No hay llamadas";
+       
+   } else {
+       
+     while(contador<cantidadLlamadas){
+      
+       if(llamadas[contador].numDestino.equals(pChip.numTelefono)){
           
-        resultado+="Duracion: "+ pChip.llamadas[contador].duracion+"\n";
-        resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
-        resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";
+         resultado+="Duracion: "+ pChip.llamadas[contador].duracion+"\n";
+         resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
+         resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";
         
+       }
+      
+       contador+=1;    
+    
       }
       
-      contador+=1;    
-    
-    }
-    
-    return resultado;
-        
-  }
+   }
+   
+   return resultado;
+   
+ }
   
   
   /**
@@ -206,17 +222,25 @@ public class Chip{
     
     int contador=0;
     String resultado="";
-    while(contador<mensajes.length){
+    if (cantidadMensajes == 0) {
+   
+     return "No hay mensajes";
+       
+    } else {
         
-      if(mensajes[contador].numDestino.equals(pChip.numTelefono)){
+      while(contador<cantidadMensajes){
+        
+        if(mensajes[contador].numDestino.equals(pChip.numTelefono)){
           
-        resultado+="Contenido: "+mensajes[contador].texto+"\n";
-        resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
-        resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
+          resultado+="Contenido: "+mensajes[contador].texto+"\n";
+          resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
+          resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
         
-      }
+        }
       
-      contador+=1;    
+        contador+=1;    
+    
+      }
     
     }
     
@@ -225,7 +249,7 @@ public class Chip{
   }
   
   
-   /**
+  /**
    * Método que permite recargar un chip.
    * 
    * @param pMonto
@@ -253,7 +277,7 @@ public class Chip{
    * @param pMonto
    * @return Un mensaje de éxito o fallo.
    */
-  public String salvar(int pMonto){
+  public String salvar(){
     
     if(contadorSalvame<=3){        
         
@@ -273,7 +297,7 @@ public class Chip{
         
         return"Ha superado la cantidad de veces que puede utilizar salvame";
        
-      }  
+    }  
         
   }
   
@@ -284,19 +308,27 @@ public class Chip{
    * @return Un reporte con todos los mensajes enviados.
    */
   public String consultarMensajesEnviados(){
-    
+
     int contador=0;
     String resultado="";
-    while(contador<mensajes.length){
-        
-      resultado+="Contenido: "+mensajes[contador].texto+"\n";
-      resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
-      resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
-      contador+=1;    
+    if (cantidadMensajes == 0){
+       
+      return "No ha enviado mensajes";
+    } else {
+      
+      while(contador < cantidadMensajes){
+      
+        resultado += "Mensajes: " + "\n";
+        resultado+="Contenido: "+mensajes[contador].texto+"\n";
+        resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
+        contador+=1;    
     
+      }
+
     }
     
-    return resultado; 
+      return resultado; 
         
   }
   
@@ -306,17 +338,25 @@ public class Chip{
    * 
    * @return Un reporte con todos las llamadas enviadas.
    */
-  public String consultarLlamadasEnviadas(){
+  public String consultarLlamadas(){
     
     int contador=0;
     String resultado="";
-    while(contador<llamadas.length){
+    if (cantidadMensajes == 0){
+       
+      return "No ha realizado llamadas";
+    } else {
         
-      resultado+="Duracion: "+llamadas[contador].duracion+"\n";
-      resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
-      resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";  
-      contador+=1;    
+      while(contador<cantidadLlamadas){
+      
+        resultado += "Llamadas: " + "\n";  
+        resultado+="Duracion: "+llamadas[contador].duracion+"\n";
+        resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";  
+        contador+=1;    
     
+      } 
+     
     }
     
     return resultado;  
@@ -336,7 +376,7 @@ public class Chip{
       
       if(verificarSaldo()==true){
         
-        if(consultarSaldo()>=pMonto){
+        if(consultarSaldo()>= (pMonto+5)){
         
           pChip.saldo+=pMonto;
           saldo-=(pMonto+5);
@@ -358,7 +398,7 @@ public class Chip{
     
       return "Monto de transferencia inválido!";
     
-      }  
+    }  
       
   }
   
@@ -369,19 +409,27 @@ public class Chip{
    * @return Un reporte con todos los mensajes recibidos.
    */
   public String consultarMensajesRecibidos(){
-    
+
     int contador=0;
     String resultado="";
-    while(contador<mensajesR.length){
-        
-      resultado+="Contenido: "+mensajesR[contador].texto+"\n";
-      resultado+="Número de Destino: "+mensajesR[contador].numDestino+"\n";
-      resultado+="Fecha y hora: "+mensajesR[contador].fechaHora+"\n"+"\n";
-      contador+=1;    
+    if (cantidadMensajesR == 0){
+       
+      return "No ha recibido mensajes";
+    } else {
+      
+      while(contador < cantidadMensajesR){
+      
+        resultado += "Mensajes Recibidos: " + "\n";
+        resultado+="Contenido: "+mensajesR[contador].texto+"\n";
+        resultado+="Número de Destino: "+mensajesR[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+mensajesR[contador].fechaHora+"\n"+"\n";
+        contador+=1;    
     
+      }
+
     }
     
-    return resultado; 
+      return resultado; 
         
   }
   
@@ -391,7 +439,7 @@ public class Chip{
    * 
    * @return Un reporte con la cantidad de lineas que existen.
    */
-  public int consultarCantidadLineas(){
+  public static int consultarCantidadLineas(){
     
     return cantidadLineasPrepago;
     
@@ -404,7 +452,7 @@ public class Chip{
    *
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public String consultarMesActual(Chip pChip){
+  public String consultarMesActual(){
     
     int mes = getFecha();
     String resultado = "";
@@ -428,27 +476,40 @@ public class Chip{
   
     int contador = 0;
     String resultado="";
-    while(contador<llamadas.length){
+    if (cantidadLlamadas == 0){
+        
+      return "No se realizaron llamadas en el mes: " + pMes;
+      
+     } else {
     
-      Date fecha = llamadas[contador].fechaHora;
-      int mes = fecha.getMonth();
-      if (mes == pMes) {  
+      while(contador < cantidadLlamadas){
+    
+        Date fecha = llamadas[contador].fechaHora;
+        int mes = fecha.getMonth()+1;
+        if (mes == pMes) {  
      
-        resultado+="Duracion: "+llamadas[contador].duracion +"\n";
-        resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
-        resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";
-        contador+=1;    
+          resultado+="Duracion: "+llamadas[contador].duracion +"\n";
+          resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
+          resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";
+          contador+=1;    
   
-      } else {
+        } else {
     
-        contador+=1; 
+          contador+=1; 
     
-      } 
+        } 
     
+      }
+      
     }
     
-    return resultado; 
-  
+    if (resultado == "") {
+        
+      return "No se realizaron llamadas en el mes: " + pMes;
+      
+    } else {
+      return resultado; 
+    }
   }
   
   
@@ -463,26 +524,40 @@ public class Chip{
   
     int contador = 0;
     String resultado="";
-    while(contador<mensajes.length){
+    if (cantidadMensajes == 0) {
+        
+      return "No hay mensajes enviados en el mes: " + pMes;
+      
+    } else {
+        
+      while(contador < cantidadMensajes){
     
-      Date fecha = mensajes[contador].fechaHora;
-      int mes = fecha.getMonth();
-      if (mes == pMes) {  
+        Date fecha = mensajes[contador].fechaHora;
+        int mes = fecha.getMonth() +1;
+        if (mes == pMes) {  
      
-        resultado+="Mensaje: "+mensajes[contador].texto +"\n";
-        resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
-        resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
-        contador+=1;    
+          resultado+="Mensaje: "+mensajes[contador].texto +"\n";
+          resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
+          resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
+          contador+=1;    
   
-      } else {
+        } else {
     
-        contador+=1; 
+          contador+=1; 
     
-      } 
+        }   
     
+      }
+      
     }
     
-    return resultado; 
+    if (resultado == "") {
+        
+      return "No se enviaron mensajes en el mes: " + pMes;
+      
+    } else {
+      return resultado; 
+    }
   
   }
    
@@ -498,26 +573,41 @@ public class Chip{
   
     int contador = 0;
     String resultado="";
-    while(contador<mensajesR.length){
+    if (cantidadMensajesR == 0) {
+        
+      return "No hay mensajes recibidos en el mes: " + pMes;
+      
+    } else {
+      while(contador < cantidadMensajesR){
     
-      Date fecha = mensajesR[contador].fechaHora;
-      int mes = fecha.getMonth();
-      if (mes == pMes) {  
+        Date fecha = mensajesR[contador].fechaHora;
+        int mes = fecha.getMonth()+1;
+        if (mes == pMes) {  
      
-        resultado+="Mensaje: "+mensajesR[contador].texto +"\n";
-        resultado+="Número de Destino: "+mensajesR[contador].numDestino+"\n";
-        resultado+="Fecha y hora: "+mensajesR[contador].fechaHora+"\n"+"\n";
-        contador+=1;    
+          resultado+="Mensaje: "+mensajesR[contador].texto +"\n";
+          resultado+="Número de Destino: "+mensajesR[contador].numDestino+"\n";
+          resultado+="Fecha y hora: "+mensajesR[contador].fechaHora+"\n"+"\n";
+          contador+=1;    
   
-      } else {
+        } else {
     
-        contador+=1; 
+          contador+=1; 
     
-      } 
+        } 
+    
+      }
     
     }
     
-    return resultado; 
+    if (resultado == "") {
+        
+      return "No se realizaron llamadas en el mes: " + pMes;
+      
+    } else {
+        
+      return resultado; 
+      
+    }
   
   }
   
@@ -529,7 +619,7 @@ public class Chip{
    * @param pMes, pChip
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public String consultarMes(Chip pChip, int pMes){
+  public String consultarMes(int pMes){
     
     String resultado = "";
     resultado += "Llamadas : " + "\n" + consultarLlamadasMes(pMes) + "\n";
@@ -540,29 +630,29 @@ public class Chip{
   }  
   
   
-   /**
+  /**
    * Método que permite agregar mensajes enviados al chip.
    * 
    * @param pMensaje, pChip
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public void agregarMensajeEnviado(Chip pChip, Mensaje pMensaje) {
+  public void agregarMensajeEnviado(Mensaje pMensaje) {
   
     if (cantidadMensajes <=10) {
       
-      mensajes[cantidadMensajes] = pMensaje;
-      cantidadMensajes++;
+      this.mensajes[cantidadMensajes] = pMensaje;
+      this.cantidadMensajes++;
       
     } else {
     
-      cantidadMensajes = 1;
+      this.cantidadMensajes = 0;
       
     }
     
   }
   
   
-   /**
+  /**
    * Método que permite agregar mensajes recibidos al chip.
    * 
    * @param pMensaje, pChip
@@ -572,25 +662,25 @@ public class Chip{
   
     if (cantidadMensajesR <=10) {
       
-      mensajesR[cantidadMensajesR] = pMensaje;
-      cantidadMensajesR++;
+      pChip.mensajesR[cantidadMensajesR] = pMensaje;
+      pChip.cantidadMensajesR++;
       
     } else {
     
-      cantidadMensajes = 1;
+      pChip.cantidadMensajesR = 0;
       
     }
     
   }
   
   
-   /**
+  /**
    * Método que permite agregar llamadas al chip.
    * 
    * @param pLlamada, pChip
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public void agregarLlamada(Chip pChip, Llamada pLlamada) {
+  public void agregarLlamada(Llamada pLlamada) {
   
     if (cantidadLlamadas <=10) {
       
@@ -599,10 +689,83 @@ public class Chip{
       
     } else {
     
-      cantidadLlamadas = 1;
+      cantidadLlamadas = 0;
       
     }
     
   }
   
-}
+  /**
+   * Método que permite realizar una llamada.
+   * 
+   * @param pChip y pDuracion.
+   * @return Un mensaje con el saldo actual del chip.
+   */
+  public double llamar(double pDuracion, Chip pChip){
+    
+    String numDestino = pChip.numTelefono;
+    Llamada llamada = new Llamada(numDestino,pDuracion);
+    
+    if (numDestino != "911"){
+     
+      this.saldo -= (llamada.costoMinuto * pDuracion);
+      llamada.fechaHora = setFechaHora();
+      agregarLlamada(llamada);
+      return this.saldo;
+     
+    } else {
+    
+      llamada.fechaHora = setFechaHora();
+      agregarLlamada(llamada);
+      return this.saldo;    
+        
+    }
+    
+  }
+  
+  
+  /**
+   * Método que permite realizar un mensaje .
+   * 
+   * @param pChip y pTexto.
+   * @return Un mensaje de éxito o fallo de la transacción.
+   */
+  public String enviarMensaje(String pTexto, Chip pChip){
+      
+    //char digito = pTexto.charAt(128);
+    //if (Character.toString(digito) == null) { 
+        
+      String numDestino = pChip.numTelefono;
+      Mensaje mensaje = new Mensaje(pTexto,numDestino); 
+      this.saldo -= mensaje.costoMensaje;
+      mensaje.fechaHora = setFechaHora();
+      agregarMensajeEnviado(mensaje);
+      agregarMensajeRecibido(pChip,mensaje);
+      return "El mensaje ha sido enviado! Su saldo: " + this.saldo;
+      
+    //} else {
+    
+     // return "El texto no puede exceder los 128 caracteres";
+    }
+   
+    
+  /**
+   * Método que permite visitar una página web específica.
+   * 
+   * @param pPaginaWeb y pChip.
+   * @return devuelve un mensaje con la cantidad de megabytes disponibles.          
+   */ 
+  public String navegar(String pPaginaWeb){
+    
+    Navegacion navegar = new Navegacion(pPaginaWeb,0); 
+    navegar.cantidadKilobytes = navegar.setCantidadKilobytes(1, 8);
+    cantidadMegabytes-=((navegar.cantidadKilobytes*1)/1000);
+    return "La cantidad de megabytes disponibles es de: "+ getCantidadMegabytes();    
+      
+  }
+  
+  
+   }
+  
+  
+//}

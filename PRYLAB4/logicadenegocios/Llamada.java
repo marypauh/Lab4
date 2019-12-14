@@ -12,7 +12,7 @@ import logicadenegocios.Chip;
 public class Llamada{
     
   protected double duracion=0; 
-  private int costoMinuto=30; 
+  protected int costoMinuto=30; 
   protected String numDestino=null;
   protected Date fechaHora;
  
@@ -36,14 +36,6 @@ public class Llamada{
   }
   
   
-  public void setFechaHora(){
-      
-    Calendar calendario=Calendar.getInstance();
-    fechaHora=calendario.getTime();
-          
-  }
-  
-  
   public String getFechaHora(){
       
     SimpleDateFormat nuevaFecha= new SimpleDateFormat("dd/MM/yy");
@@ -56,30 +48,6 @@ public class Llamada{
       
     return duracion;
           
-  }
-  
-  
-  /**
-   * Método que permite realizar una llamada.
-   * 
-   * @param pChip y pDuracion.
-   * @return Un mensaje con el saldo actual del chip.
-   */
-  public double llamar(double pDuracion, Chip pChip){
-      
-    this.numDestino = pChip.numTelefono;
-    if (numDestino != "911"){
-     
-      pChip.saldo -= (costoMinuto * pDuracion);
-      setFechaHora();
-      return pChip.saldo;
-     
-    } else {
-    
-      return pChip.saldo;    
-        
-    }
-    
   }
   
 }
