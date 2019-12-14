@@ -1,5 +1,4 @@
 package logicadenegocios;
-
 import logicadenegocios.Chip;
 import java.util.Date;
 import java.util.Calendar;
@@ -17,7 +16,6 @@ public class Mensaje {
   protected String numDestino = null;
   protected Date fechaHora;
 
-  
   /**
    * Constructor de objetos para la clase Mensaje
    * 

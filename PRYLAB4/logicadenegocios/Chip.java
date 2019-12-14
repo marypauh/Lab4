@@ -27,7 +27,6 @@ public class Chip{
   private int cantidadMensajesR = 0;
   private int cantidadLlamadas = 0;
   
-  
   /**
   * Constructor de objetos para la clase Chip
   */
@@ -732,8 +731,7 @@ public class Chip{
    */
   public String enviarMensaje(String pTexto, Chip pChip){
       
-    //char digito = pTexto.charAt(128);
-    //if (Character.toString(digito) == null) { 
+    if (pTexto.length() < 129) { 
         
       String numDestino = pChip.numTelefono;
       Mensaje mensaje = new Mensaje(pTexto,numDestino); 
@@ -743,12 +741,14 @@ public class Chip{
       agregarMensajeRecibido(pChip,mensaje);
       return "El mensaje ha sido enviado! Su saldo: " + this.saldo;
       
-    //} else {
+    } else {
     
-     // return "El texto no puede exceder los 128 caracteres";
+     return "El texto no puede exceder los 128 caracteres";
     }
    
-    
+  }
+
+  
   /**
    * Método que permite visitar una página web específica.
    * 
@@ -763,9 +763,7 @@ public class Chip{
     return "La cantidad de megabytes disponibles es de: "+ getCantidadMegabytes();    
       
   }
+ 
+}
   
-  
-   }
-  
-  
-//}
+
