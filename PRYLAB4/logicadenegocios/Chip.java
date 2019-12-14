@@ -6,7 +6,6 @@ import logicadenegocios.Llamada;
 import logicadenegocios.Mensaje;
 import logicadenegocios.Navegacion;
 
-
 /**
  * @author Óscar Trejos y María Paula Rodríguez
  * @version 11/12/19
@@ -25,6 +24,7 @@ public class Chip{
   protected Mensaje mensajes[] = new Mensaje[10];
   protected Mensaje mensajesR[] = new Mensaje[10];
   private static int cantidadMensajes = 1;
+  private static int cantidadMensajesR = 1;
   private static int cantidadLlamadas = 1;
   
   
@@ -162,7 +162,7 @@ public class Chip{
     resultado+="Los mensajes son: "+consultarMensajesActividad(pChip)+"\n";
     return resultado;
         
-   }
+  }
   
   
    /**
@@ -180,7 +180,7 @@ public class Chip{
         
       if(llamadas[contador].numDestino.equals(pChip.numTelefono)){
           
-        resultado+="Duracion: "+llamadas[contador].duracion+"\n";
+        resultado+="Duracion: "+ pChip.llamadas[contador].duracion+"\n";
         resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
         resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";
         
@@ -240,14 +240,14 @@ public class Chip{
     
     } else{
         
-        return"Monto de recarga inválido";
+      return"Monto de recarga inválido";
        
-      }  
+    }  
         
   }
   
   
-   /**
+  /**
    * Método que permite recargar un 100 colones si el saldo es cero.
    * 
    * @param pMonto
@@ -324,7 +324,7 @@ public class Chip{
   }
   
   
-   /**
+  /**
    * Método que permite transferir un monto a otro chip.
    * 
    * @param pMonto
@@ -344,7 +344,7 @@ public class Chip{
         
         } else{
         
-            return "No posee el monto que desea transferir";
+          return "No posee el monto que desea transferir";
          
         }
     
@@ -356,11 +356,10 @@ public class Chip{
 
     } else{
     
-         return "Monto de transferencia inválido!";
+      return "Monto de transferencia inválido!";
     
       }  
-    
-        
+      
   }
   
   
@@ -418,6 +417,13 @@ public class Chip{
   }
   
   
+  /**
+   * Método que permite consultar las llamadas realizadas en
+   * un mes específico.
+   * 
+   * @param mes que se desea consultar
+   * @return las llamadas realizadas en ese mes
+   */
   public String consultarLlamadasMes(int pMes) {
   
     int contador = 0;
@@ -446,6 +452,13 @@ public class Chip{
   }
   
   
+  /**
+   * Método que permite consultar los mensajes enviados en
+   * un mes específico.
+   * 
+   * @param mes que se desea consultar
+   * @return los mensajes enviados en ese mes
+   */
   public String consultarMensajesMes(int pMes) {
   
     int contador = 0;
@@ -474,6 +487,13 @@ public class Chip{
   }
    
   
+  /**
+   * Método que permite consultar los mensajes recibidos en
+   * un mes específico.
+   * 
+   * @param mes que se desea consultar
+   * @return los mensajes recibidos en ese mes
+   */
   public String consultarMensajesRMes(int pMes) {
   
     int contador = 0;
@@ -506,62 +526,83 @@ public class Chip{
    * Método que permite revisar la actividad de llamadas y mensajes
    * que se han tenido en un mes específico.
    * 
-   * @param pMes
+   * @param pMes, pChip
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public String consultarMes(int pMes){
+  public String consultarMes(Chip pChip, int pMes){
     
     String resultado = "";
     resultado += "Llamadas : " + "\n" + consultarLlamadasMes(pMes) + "\n";
     resultado += "Mensajes Enviados : " + "\n"  + consultarMensajesMes(pMes) + "\n";
-    resultado += "Mensajes Recibidos : " + "\n"  + consultarMensajesRMes(pMes) + "\n";
-    
+    resultado += "Mensajes Recibidos : " + "\n"  + consultarMensajesRMes(pMes) + "\n"; 
     return resultado;  
         
   }  
   
   
    /**
-   * Método que permite agregar mensajes al chip.
+   * Método que permite agregar mensajes enviados al chip.
    * 
-   * @param pMensaje
+   * @param pMensaje, pChip
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public void agregarMensaje(Mensaje pMensaje) {
+  public void agregarMensajeEnviado(Chip pChip, Mensaje pMensaje) {
   
     if (cantidadMensajes <=10) {
       
       mensajes[cantidadMensajes] = pMensaje;
       cantidadMensajes++;
-      //toString mensajes
+      
     } else {
     
       cantidadMensajes = 1;
       
     }
     
- }
+  }
+  
+  
+   /**
+   * Método que permite agregar mensajes recibidos al chip.
+   * 
+   * @param pMensaje, pChip
+   * @return Un mensaje con la información de las llamadas y mensajes.
+   */
+  public void agregarMensajeRecibido(Chip pChip, Mensaje pMensaje) {
+  
+    if (cantidadMensajesR <=10) {
+      
+      mensajesR[cantidadMensajesR] = pMensaje;
+      cantidadMensajesR++;
+      
+    } else {
+    
+      cantidadMensajes = 1;
+      
+    }
+    
+  }
   
   
    /**
    * Método que permite agregar llamadas al chip.
    * 
-   * @param pLlamada
+   * @param pLlamada, pChip
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public void agregarLlamada(Llamada pLlamada) {
+  public void agregarLlamada(Chip pChip, Llamada pLlamada) {
   
     if (cantidadLlamadas <=10) {
       
       llamadas[cantidadLlamadas] = pLlamada;
       cantidadLlamadas++;
-      //toString llamadas
+      
     } else {
     
       cantidadLlamadas = 1;
       
     }
     
- }
- 
+  }
+  
 }

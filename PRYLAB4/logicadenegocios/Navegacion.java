@@ -1,8 +1,6 @@
 package logicadenegocios;
-
 import logicadenegocios.Chip;
 import java.util.Random;
-
 
 /**
  * @author Óscar Trejos y Maria Paula Rodriguez
@@ -13,7 +11,6 @@ public class Navegacion {
   private String paginaWeb = null;
   private double cantidadKilobytes=0;
 
-  
   /**
    * Constructor de objetos para la clase Navegacion
    * 
@@ -67,6 +64,5 @@ public class Navegacion {
     return "La cantidad de megabytes disponibles es de: "+pChip.getCantidadMegabytes();    
       
   } 
-  
   
 }
