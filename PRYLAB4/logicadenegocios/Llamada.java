@@ -1,5 +1,4 @@
 package logicadenegocios;
-
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
