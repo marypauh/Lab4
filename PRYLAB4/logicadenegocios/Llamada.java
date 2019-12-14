@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 import logicadenegocios.Chip;
 
-
 /**
  * @author Óscar Trejos y Maria Paula Rodriguez
  * @version 11/12/19
@@ -18,7 +17,6 @@ public class Llamada{
   protected String numDestino=null;
   protected Date fechaHora;
  
-  
   /**
   * Constructor de objetos para la clase Llamada
   * 
@@ -62,7 +60,7 @@ public class Llamada{
   }
   
   
-   /**
+  /**
    * Método que permite realizar una llamada.
    * 
    * @param pChip y pDuracion.

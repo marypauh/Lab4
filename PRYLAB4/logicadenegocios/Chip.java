@@ -1,5 +1,7 @@
 package logicadenegocios;
-
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 import logicadenegocios.Llamada;
 import logicadenegocios.Mensaje;
 import logicadenegocios.Navegacion;
@@ -21,6 +23,7 @@ public class Chip{
   private static int cantidadLineasPrepago=0;
   protected Llamada llamadas[] = new Llamada[10];
   protected Mensaje mensajes[] = new Mensaje[10];
+  protected Mensaje mensajesR[] = new Mensaje[10];
   private static int cantidadMensajes = 1;
   private static int cantidadLlamadas = 1;
   
@@ -78,6 +81,15 @@ public class Chip{
   }
   
   
+  public int getFecha(){
+    
+    Calendar fecha = Calendar.getInstance();
+    int mes = fecha.get(Calendar.MONTH) + 1;
+    return mes;
+    
+  }
+  
+  
   /**
    * Método que permite activar el chip.
    * 
@@ -96,7 +108,7 @@ public class Chip{
     
     } else{
         
-        return "El chip ya se encuentra activado!";  
+      return "El chip ya se encuentra activado!";  
         
       }   
         
@@ -116,9 +128,9 @@ public class Chip{
     
     }  else{
     
-          return false;
+      return false;
       
-       }
+    }
         
   }  
   
@@ -142,7 +154,7 @@ public class Chip{
    * @param pChip
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public String consultarActividad(Chip pChip){ //listado mensajes y llamadas de un numero
+  public String consultarActividad(Chip pChip){ 
     
     int contador=0;
     String resultado="";
@@ -150,7 +162,7 @@ public class Chip{
     resultado+="Los mensajes son: "+consultarMensajesActividad(pChip)+"\n";
     return resultado;
         
-  }
+   }
   
   
    /**
@@ -320,7 +332,6 @@ public class Chip{
    */
   public String transferir(Chip pChip, int pMonto){
       
-      
     if(pMonto>0){        
       
       if(verificarSaldo()==true){
@@ -335,7 +346,7 @@ public class Chip{
         
             return "No posee el monto que desea transferir";
          
-          }
+        }
     
       } else{
     
@@ -360,7 +371,18 @@ public class Chip{
    */
   public String consultarMensajesRecibidos(){
     
-    return "";  
+    int contador=0;
+    String resultado="";
+    while(contador<mensajesR.length){
+        
+      resultado+="Contenido: "+mensajesR[contador].texto+"\n";
+      resultado+="Número de Destino: "+mensajesR[contador].numDestino+"\n";
+      resultado+="Fecha y hora: "+mensajesR[contador].fechaHora+"\n"+"\n";
+      contador+=1;    
+    
+    }
+    
+    return resultado; 
         
   }
   
@@ -383,23 +405,118 @@ public class Chip{
    *
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public String consultarMesActual(){
+  public String consultarMesActual(Chip pChip){
     
-    return "";  
-        
+    int mes = getFecha();
+    String resultado = "";
+    resultado += "Llamadas : " + "\n" + consultarLlamadasMes(mes) + "\n";
+    resultado += "Mensajes Enviados : " + "\n"  + consultarMensajesMes(mes) + "\n";
+    resultado += "Mensajes Recibidos : " + "\n"  + consultarMensajesRMes(mes) + "\n";
+    
+    return resultado;
+    
   }
   
   
-   /**
+  public String consultarLlamadasMes(int pMes) {
+  
+    int contador = 0;
+    String resultado="";
+    while(contador<llamadas.length){
+    
+      Date fecha = llamadas[contador].fechaHora;
+      int mes = fecha.getMonth();
+      if (mes == pMes) {  
+     
+        resultado+="Duracion: "+llamadas[contador].duracion +"\n";
+        resultado+="Número de Destino: "+llamadas[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+llamadas[contador].fechaHora+"\n"+"\n";
+        contador+=1;    
+  
+      } else {
+    
+        contador+=1; 
+    
+      } 
+    
+    }
+    
+    return resultado; 
+  
+  }
+  
+  
+  public String consultarMensajesMes(int pMes) {
+  
+    int contador = 0;
+    String resultado="";
+    while(contador<mensajes.length){
+    
+      Date fecha = mensajes[contador].fechaHora;
+      int mes = fecha.getMonth();
+      if (mes == pMes) {  
+     
+        resultado+="Mensaje: "+mensajes[contador].texto +"\n";
+        resultado+="Número de Destino: "+mensajes[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+mensajes[contador].fechaHora+"\n"+"\n";
+        contador+=1;    
+  
+      } else {
+    
+        contador+=1; 
+    
+      } 
+    
+    }
+    
+    return resultado; 
+  
+  }
+   
+  
+  public String consultarMensajesRMes(int pMes) {
+  
+    int contador = 0;
+    String resultado="";
+    while(contador<mensajesR.length){
+    
+      Date fecha = mensajesR[contador].fechaHora;
+      int mes = fecha.getMonth();
+      if (mes == pMes) {  
+     
+        resultado+="Mensaje: "+mensajesR[contador].texto +"\n";
+        resultado+="Número de Destino: "+mensajesR[contador].numDestino+"\n";
+        resultado+="Fecha y hora: "+mensajesR[contador].fechaHora+"\n"+"\n";
+        contador+=1;    
+  
+      } else {
+    
+        contador+=1; 
+    
+      } 
+    
+    }
+    
+    return resultado; 
+  
+  }
+  
+  
+  /**
    * Método que permite revisar la actividad de llamadas y mensajes
    * que se han tenido en un mes específico.
    * 
    * @param pMes
    * @return Un mensaje con la información de las llamadas y mensajes.
    */
-  public String consultarMes(String pMes){
+  public String consultarMes(int pMes){
     
-    return "";  
+    String resultado = "";
+    resultado += "Llamadas : " + "\n" + consultarLlamadasMes(pMes) + "\n";
+    resultado += "Mensajes Enviados : " + "\n"  + consultarMensajesMes(pMes) + "\n";
+    resultado += "Mensajes Recibidos : " + "\n"  + consultarMensajesRMes(pMes) + "\n";
+    
+    return resultado;  
         
   }  
   
@@ -423,7 +540,7 @@ public class Chip{
       
     }
     
-  }
+ }
   
   
    /**
@@ -445,6 +562,6 @@ public class Chip{
       
     }
     
-  }
+ }
  
 }
