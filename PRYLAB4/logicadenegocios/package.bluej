@@ -2,10 +2,10 @@
 dependency1.from=Llamada
 dependency1.to=Chip
 dependency1.type=UsesDependency
-dependency2.from=Navegacion
+dependency2.from=Mensaje
 dependency2.to=Chip
 dependency2.type=UsesDependency
-dependency3.from=Mensaje
+dependency3.from=Navegacion
 dependency3.to=Chip
 dependency3.type=UsesDependency
 dependency4.from=Chip
