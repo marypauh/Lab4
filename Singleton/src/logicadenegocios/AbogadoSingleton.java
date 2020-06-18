@@ -8,7 +8,7 @@ public class AbogadoSingleton {
 		
 	}
 	
-	public Abogado obtenerInstancia() {
+	public static Abogado obtenerInstancia() {
 	return instancia;
 	}
 	
