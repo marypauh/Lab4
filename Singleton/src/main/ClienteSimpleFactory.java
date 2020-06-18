@@ -1,17 +1,22 @@
 package main;
 
-import logicadenegocios.SimpleVehiculoFactory;
-import logicadenegocios.Vehiculo;
+import logicadenegocios.VegetalFactory;
+import logicadenegocios.CarneFactory;
+import logicadenegocios.Alimento;
 
 public class ClienteSimpleFactory {
 	
-	private static SimpleVehiculoFactory factory = new SimpleVehiculoFactory();
+	private static VegetalFactory fabricaV = new VegetalFactory();
+	private static CarneFactory fabricaC = new CarneFactory();
 
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-	  Vehiculo vehiculo;
-	  vehiculo = factory.crearVehiculo("Terrestre");
-	  vehiculo.producir();
-
+	  Alimento alimentoC;
+	  alimentoC = fabricaC.crearAlimento();
+	  alimentoC.producir();
+	  
+	  Alimento alimentoV;
+	  alimentoV = fabricaV.crearAlimento();
+	  alimentoV.producir();
 	}
 
 }

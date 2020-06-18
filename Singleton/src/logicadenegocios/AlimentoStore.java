@@ -1,18 +1,18 @@
 package logicadenegocios;
 
 public class AlimentoStore {
+	private AlimentoFactory fabrica;
 	
-	private SimpleAlimentoFactory fabrica;
-	
-	public AlimentoStore(SimpleAlimentoFactory pFabrica) {
+	public AlimentoStore(AlimentoFactory pFabrica) {
 		fabrica = pFabrica;
+		
 	}
 	
-	public Alimento solicitarAlimento(String pTipo) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-		  Alimento alimento;
-		  alimento = fabrica.crearAlimento(pTipo);
-		  alimento.producir();
-		  return alimento;
-		}
+	public Alimento solicitarAlimento() {
+		Alimento alimento;
+		alimento = fabrica.crearAlimento();
+		alimento.producir();
+		return alimento;
+	}
 
 }
