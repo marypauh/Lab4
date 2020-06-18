@@ -1,8 +1,8 @@
 package logicadenegocios;
 
-public abstract class Vehiculo {
+public abstract class Alimento {
 	
-	public Vehiculo() {}
+	public Alimento () {}
 	
 	public abstract void producir();
 
