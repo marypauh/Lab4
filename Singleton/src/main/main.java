@@ -1,6 +1,6 @@
 package main;
 
-import logicadenegocios
+import logicadenegocios.Vehiculo;
 import logicadenegocios
 
 public class main {
