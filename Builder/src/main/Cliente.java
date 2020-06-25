@@ -1,30 +1,42 @@
 package main;
-
 import logicadeinstanciacion.Director;
-import logicadenegocios.Casa;
-import logicadenegocios.CasaBuilder;
+import logicadenegocios.Hotel;
+import logicadenegocios.HotelBuilder;
 
 public class Cliente {
 
 	public static void main(String[] args) {
-		CasaBuilder casaBuilder = new CasaBuilder();
-		Director director = new Director(casaBuilder);
+		HotelBuilder hotelBuilder = new HotelBuilder();
+		Director director = new Director(hotelBuilder);
 		
-		director.hacerCasaHabitacion();
-		Casa casaHabitacion = casaBuilder.getResult();
+		director.hacerHotelFamiliar();
+		Hotel hotelFamiliar = hotelBuilder.getResult();
 		
-		director.hacerOficina();
-		Casa oficina =  casaBuilder.getResult();
+		director.hacerHotelLujoso();
+		Hotel hotelLujoso =  hotelBuilder.getResult();
 		
-		System.out.println("Casa de Habitación");
-		System.out.println(casaHabitacion.getCuartos());
-		System.out.println(casaHabitacion.getBanos());
-		System.out.println(casaHabitacion.getGarajes());
+		director.hacerHotelRomantico();
+		Hotel hotelRomantico = hotelBuilder.getResult();
 		
-		System.out.println("Oficina");
-		System.out.println(oficina.getCuartos());
-		System.out.println(oficina.getBanos());
-		System.out.println(oficina.getGarajes());
+		System.out.println("Hotel familiaar");
+		System.out.println("La cantidad de cuartos son: "+hotelFamiliar.getCantidadCuartos());
+		System.out.println("La cantidad de baños son: "+hotelFamiliar.getCantidadBaños());
+		System.out.println("La cantidad de piscinas son: "+hotelFamiliar.getCantidadPiscinas());
+		System.out.println("La cantidad de restaurantes son: "+hotelFamiliar.getCantidadRestaurantes());
+		
+		System.out.println("Hotel lujoso");
+		System.out.println("La cantidad de cuartos son: "+hotelLujoso.getCantidadCuartos());
+		System.out.println("La cantidad de baños son: "+hotelLujoso.getCantidadBaños());
+		System.out.println("La cantidad de piscinas son: "+hotelLujoso.getCantidadPiscinas());
+		System.out.println("La cantidad de restaurantes son: "+hotelLujoso.getCantidadRestaurantes());
+		
+		System.out.println("Hotel romántico ");
+		System.out.println("La cantidad de cuartos son: "+hotelRomantico.getCantidadCuartos());
+		System.out.println("La cantidad de baños son: "+hotelRomantico.getCantidadBaños());
+		System.out.println("La cantidad de piscinas son: "+hotelRomantico.getCantidadPiscinas());
+		System.out.println("La cantidad de restaurantes son: "+hotelRomantico.getCantidadRestaurantes());
+
+		
 	}
 
 }
