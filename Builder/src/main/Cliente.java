@@ -1,7 +1,7 @@
 package main;
 import logicadeinstanciacion.Director;
+import logicadeinstanciacion.HotelBuilder;
 import logicadenegocios.Hotel;
-import logicadenegocios.HotelBuilder;
 
 public class Cliente {
 

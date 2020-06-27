@@ -1,5 +1,5 @@
-package logicadenegocios;
-import logicadeinstanciacion.Builder;
+package logicadeinstanciacion;
+import logicadenegocios.Hotel;
 
 public class HotelBuilder implements Builder{
 	private Hotel resultado;
