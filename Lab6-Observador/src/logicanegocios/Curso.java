@@ -1,23 +1,23 @@
 package logicanegocios;
 import java.util.ArrayList;
 
-public class TecDigital {
+public class Curso {
 	
-	private String curso;
+	private String evaluacion;
 	private ArrayList<Estudiante> estudiantes;
 	
 	
-	public TecDigital() {
+	public Curso() {
 		estudiantes = new ArrayList<>();
 	}
 	
 	public String getCurso() {
-		return curso;
+		return evaluacion;
 	}
 	
 	
-	public void setCursos(String pCursos) {
-		curso = pCursos;
+	public void setCursos(String pEvaluacion) {
+		evaluacion = pEvaluacion;
 		notificarEstudiantes();		
 	}
 	

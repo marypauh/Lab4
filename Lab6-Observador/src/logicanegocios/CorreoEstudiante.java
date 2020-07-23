@@ -2,14 +2,14 @@ package logicanegocios;
 
 public class CorreoEstudiante extends Estudiante {
 	
-	public CorreoEstudiante(TecDigital pTecDigital) {
-		asunto =pTecDigital;
+	public CorreoEstudiante(Curso pEvaluacion) {
+		asunto = pEvaluacion;
 		asunto.attach(this);
 	}
 
 	@Override
 	public void actualizar() {
-		System.out.println("Los cursos han cambiado: "+asunto.getCurso());
+		System.out.println("Notificación correo: La evaluación ha cambiado: "+asunto.getCurso());
 		
 	}
 

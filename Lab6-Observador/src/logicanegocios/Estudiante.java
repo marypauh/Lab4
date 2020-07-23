@@ -2,7 +2,7 @@ package logicanegocios;
 
 public abstract class Estudiante {
 	
-	protected TecDigital asunto;
+	protected Curso asunto;
 	public abstract void actualizar();
 
 }

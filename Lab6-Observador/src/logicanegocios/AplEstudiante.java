@@ -4,13 +4,16 @@ public class AplEstudiante {
 	
 	public static void main (String[] args) {
 		
-		TecDigital tecDigital= new TecDigital();
-		Estudiante estudiante1 = new CorreoEstudiante(tecDigital);
-		Estudiante estudiante2 = new CorreoEstudiante(tecDigital);		
-		System.out.println("Cambio un curso a diseño");
-		tecDigital.setCursos("Diseño");
-		System.out.println("Cambio un curso a bases");
-		tecDigital.setCursos("Bases ");
+		Curso evaluacion = new Curso();
+		
+		Estudiante estudiante1 = new CorreoEstudiante(evaluacion);
+		Estudiante estudiante2 = new SmsEstudiante(evaluacion);
+		
+		System.out.println("Cambio una evaluacion a examen");
+		evaluacion.setCursos("Examen");
+		
+		System.out.println("Cambio una evaluacion a quiz");
+		evaluacion.setCursos("Quiz");
 		}
 
 }
